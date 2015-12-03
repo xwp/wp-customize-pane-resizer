@@ -1,0 +1,38 @@
+/* TODO: UI experts to style adequately. */
+.customizer-resizer {
+	content: '';
+	display: block;
+	height: 100%;
+	width: 14px;
+	position: absolute;
+	/*top: 50%;*/
+	right: -14px;
+	margin-top: -30px;
+	cursor: pointer;
+	cursor: col-resize;
+	z-index: 9999999;
+	background: url(../images/handle-horz.png) center center no-repeat;
+	opacity: .8;
+}
+
+.wp-full-overlay-sidebar {
+	/*
+	Wider border to help indicate "grabbable"
+	Example UI: http://codepen.io/pen
+	*/
+	border-right-width: 14px;
+}
+
+.wp-core-ui .wp-full-overlay .collapse-sidebar {
+	/* Bump button out so it's not hovering over our newly widened border */
+	left: 22px;
+}
+
+.no-animation.wp-full-overlay,
+.no-animation.wp-full-overlay-sidebar,
+.no-animation.wp-full-overlay .collapse-sidebar,
+.no-animation.wp-full-overlay-main {
+	/* No animation to slow down dragging responsiveness */
+	-webkit-transition: none;
+	transition: none;
+}
