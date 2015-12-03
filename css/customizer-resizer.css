@@ -1,5 +1,9 @@
 /* TODO: UI experts to style adequately. */
 .customizer-resizer {
+	display: none;
+}
+
+.resizable .customizer-resizer {
 	content: '';
 	display: block;
 	height: 100%;
@@ -15,7 +19,7 @@
 	opacity: .8;
 }
 
-.wp-full-overlay-sidebar {
+.resizable .wp-full-overlay-sidebar {
 	/*
 	Wider border to help indicate "grabbable"
 	Example UI: http://codepen.io/pen
@@ -23,7 +27,11 @@
 	border-right-width: 14px;
 }
 
-.wp-core-ui .wp-full-overlay .collapse-sidebar {
+.resizable .wp-full-overlay.collapsed .wp-full-overlay-sidebar {
+	margin-left: -286px;
+}
+
+.resizable.wp-core-ui .wp-full-overlay .collapse-sidebar {
 	/* Bump button out so it's not hovering over our newly widened border */
 	left: 22px;
 }
@@ -35,4 +43,88 @@
 	/* No animation to slow down dragging responsiveness */
 	-webkit-transition: none;
 	transition: none;
+}
+
+
+/*
+	Mimic @media screen and ( max-width: 640px ) styles when body has .fullwidth-customizer
+ */
+
+.fullwidth-customizer #customize-controls {
+	width: 100%;
+}
+
+.fullwidth-customizer .wp-full-overlay.expanded {
+	margin-left: 0;
+}
+
+.fullwidth-customizer .wp-full-overlay-sidebar .wp-full-overlay-sidebar-content {
+	bottom: 0;
+}
+
+.fullwidth-customizer .customize-controls-preview-toggle {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 48px;
+	line-height: 45px;
+	font-size: 14px;
+	padding: 0 12px 0 12px;
+	margin: 0;
+	height: 45px;
+	background: #eee;
+	border-right: 1px solid #ddd;
+	color: #444;
+	cursor: pointer;
+	-webkit-transition: color .1s ease-in-out, background .1s ease-in-out;
+	transition: color .1s ease-in-out, background .1s ease-in-out;
+}
+
+.fullwidth-customizer #customize-footer-actions,
+.fullwidth-customizer #customize-preview,
+.fullwidth-customizer .customize-controls-preview-toggle .controls,
+.fullwidth-customizer .preview-only .wp-full-overlay-sidebar-content,
+.fullwidth-customizer .preview-only .customize-controls-preview-toggle .preview {
+	display: none;
+}
+
+.fullwidth-customizer .customize-controls-preview-toggle .preview:before,
+.fullwidth-customizer .customize-controls-preview-toggle .controls:before {
+	font: normal 20px/1 dashicons;
+	content: "\f177";
+	position: relative;
+	top: 4px;
+	margin-right: 6px;
+}
+
+.fullwidth-customizer .customize-controls-preview-toggle .controls:before {
+	content: "\f540";
+}
+
+.fullwidth-customizer .preview-only #customize-controls {
+	height: 45px;
+}
+
+.fullwidth-customizer .preview-only #customize-preview,
+.fullwidth-customizer .preview-only .customize-controls-preview-toggle .controls {
+	display: block;
+}
+
+.fullwidth-customizer #customize-preview {
+	top: 45px;
+	bottom: 0;
+	height: auto;
+}
+
+.fullwidth-customizer.wp-core-ui.wp-customizer .button {
+	padding: 6px 14px;
+	line-height: normal;
+	font-size: 14px;
+	vertical-align: middle;
+	height: auto;
+	margin-bottom: 4px;
+}
+
+.fullwidth-customizer #customize-header-actions .button-primary {
+	margin-top: 6px;
 }
