@@ -1,5 +1,5 @@
 === Customize Pane Resizer ===
-Contributors: wordpressdotorg
+Contributors: jtsternberg, westonruter, wordpressdotorg
 Requires at least: 4.4
 Tested up to: 4.4
 Stable tag: trunk

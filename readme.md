@@ -3,7 +3,7 @@
 
 Feature plugin for WordPress Trac #32296: Allow the customizer be made wider
 
-**Contributors:** [wordpressdotorg](https://profiles.wordpress.org/wordpressdotorg)  
+**Contributors:** [jtsternberg](https://profiles.wordpress.org/jtsternberg), [westonruter](https://profiles.wordpress.org/westonruter), [wordpressdotorg](https://profiles.wordpress.org/wordpressdotorg)  
 **Requires at least:** 4.4  
 **Tested up to:** 4.4  
 **Stable tag:** trunk (master)  
