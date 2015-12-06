@@ -158,7 +158,7 @@ module.exports = function( grunt ) {
 				tasks: ['cssmin']
 			},
 			scripts: {
-				files: ['js/*.js'],
+				files: ['js/*.js', '!js/*.min.js'],
 				tasks: ['js'],
 				options: {
 					debounceDelay: 500
