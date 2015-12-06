@@ -1,8 +1,8 @@
-/* TODO: UI experts to style adequately. */
 .customizer-resizer {
 	display: none;
 }
 
+/* TODO: UI experts to style adequately. */
 .resizable .customizer-resizer {
 	content: '';
 	display: block;

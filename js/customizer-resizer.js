@@ -5,9 +5,9 @@ window.wp.customize = window.wp.customize || {};
 	'use strict';
 
 	var app = {};
-	wp.customize.resizer = app;
 	var mouseLeft = 0;
 	var expanded = false;
+	wp.customize.resizer = app;
 
 	app.cache = function() {
 		app.$            = {};
@@ -29,7 +29,7 @@ window.wp.customize = window.wp.customize || {};
 	};
 
 	app.events = function() {
-		// We need the iframe to bubble up mouse events
+		// We need the iframe to bubble up mouse events.
 		app.initIframeMouseEvents();
 
 		app.$.resizer.on( 'mousedown', app.resizerEngage );
@@ -40,7 +40,7 @@ window.wp.customize = window.wp.customize || {};
 	app.checkWidth = function() {
 		var winWidth = app.$.window.width();
 
-		// the breakpoint where mobile view is triggered.
+		// The breakpoint where mobile view is triggered.
 		if ( winWidth < 640 ) {
 			expanded = false;
 			app.$.body.removeClass( 'resizable' );
@@ -60,32 +60,30 @@ window.wp.customize = window.wp.customize || {};
 		evt.preventDefault();
 
 		if ( iframeWidth < 100 ) {
-			/*
-			Decrease customizer width below
-			threshold where it snaps to full-width
-			 */
+
+			// Decrease customizer width below threshold where it snaps to full-width.
 			app.sizeCustomizer( winWidth - 320 );
 			app.fullWidth( 'no' );
 		} else {
 
-			// Disable customizer sizing animation
+			// Disable customizer sizing animation.
 			app.$.customizer.addClass( 'no-animation' );
 
-			// add event listeners for the dragging duration
+			// Add event listeners for the dragging duration.
 			$( document ).on( 'mousemove', app.resizerMovement );
 			$( document ).on( 'mouseup', app.resizerDisengage );
 		}
 	};
 
 	app.resizerMovement = function( evt ) {
-		// Check if the customizer is expanding (vs shrinking)
+		// Check if the customizer is expanding (vs shrinking).
 		var expanding = mouseLeft < evt.pageX;
-		// Re-cache mouseLeft
+		// Re-cache mouseLeft.
 		mouseLeft = evt.pageX;
 
 		var iframeWidth = app.$.window.width() - mouseLeft;
 
-		// If iframe width is less than a workable width, snap full-screen
+		// If iframe width is less than a workable width, snap full-screen.
 		if ( iframeWidth < 300 && iframeWidth > 100 ) {
 			app.snapToDefault();
 			app.resizerDisengage();
@@ -95,17 +93,17 @@ window.wp.customize = window.wp.customize || {};
 
 		app.fullWidth( 'no' );
 
-		// If we're expanding larger than default, increae the width
+		// If we're expanding larger than default, increae the width.
 		if ( mouseLeft >= 320 || mouseLeft >= 300 && expanding ) {
 			return app.sizeCustomizer( mouseLeft );
 		}
 
-		// If we're condensing, and close to our default, snap to it
+		// If we're condensing, and close to our default, snap to it.
 		if ( ! expanding && mouseLeft > 270 && mouseLeft < 320 ) {
 			return app.snapToDefault();
 		}
 
-		// If we're condensing past our default, just trigger the collapse
+		// If we're condensing past our default, just trigger the collapse.
 		if ( mouseLeft < 270 ) {
 			app.snapToDefault();
 			app.resizerDisengage();
@@ -114,11 +112,11 @@ window.wp.customize = window.wp.customize || {};
 	};
 
 	app.resizerDisengage = function() {
-		// remove temp. event listeners
+		// Remove temp. event listeners.
 		$( document ).off( 'mousemove', app.resizerMovement );
 		$( document ).off( 'mouseup', app.resizerDisengage );
 
-		// Re-enable customizer sizing animation
+		// Re-enable customizer sizing animation.
 		app.$.customizer.removeClass( 'no-animation' );
 	};
 
@@ -133,21 +131,21 @@ window.wp.customize = window.wp.customize || {};
 
 	app.sizeCustomizer = function( size ) {
 		size = size || '';
-		// Overlay margin needs to be nudged (give more space)
+		// Overlay margin needs to be nudged (give more space).
 		app.$.overlay.css({ 'margin-left' : size });
-		// Move the resizer handle
+		// Move the resizer handle.
 		app.$.resizer.css({ 'margin-left' : size ? size - 5 : size });
-		// And of course, resize the customizer
+		// And of course, resize the customizer.
 		app.$.customizer.width( size );
 	};
 
 	app.initIframeMouseEvents = function() {
-		// Need to recursively check for existence of iframe
+		// Need to recursively check for existence of iframe.
 		setTimeout( function() {
 			var $iframe = app.$.overlay.find( 'iframe' );
 
 			if ( $iframe.length ) {
-				// Setup iframe bubbling
+				// Setup iframe bubbling.
 				app.bubbleMouseEvent( $iframe[0], 'mousemove' );
 				app.bubbleMouseEvent( $iframe[0], 'mouseup' );
 			} else {
@@ -158,24 +156,23 @@ window.wp.customize = window.wp.customize || {};
 
 	app.bubbleMouseEvent = function( iframe, evtName ) {
 		var longName = 'on' + evtName;
-		// Save any previous handler
+		// Save any previous handler.
 		var existingMouseEvt = iframe.contentWindow[ longName ];
 
-		// Attach a new listener
-		iframe.contentWindow[ longName ] = function( evt ){
-			// Fire existing listener
+		// Attach a new listener.
+		iframe.contentWindow[ longName ] = function( evt ) {
+			// Fire existing listener.
 			if ( existingMouseEvt ) {
 				existingMouseEvt( evt );
 			}
 
-			// Create a new event for the this window
+			// Create a new event for the this window.
 			var newEvt = document.createEvent( 'MouseEvents' );
 
-			// We'll need this to offset the mouse appropriately
+			// We'll need this to offset the mouse appropriately.
 			var boundingClientRect = iframe.getBoundingClientRect();
 
-			// Initialize the event, copying exiting event values
-			// for the most part
+			// Initialize the event, copying exiting event values (for the most part).
 			newEvt.initMouseEvent(
 				evtName,
 				true, // bubbles
@@ -194,7 +191,7 @@ window.wp.customize = window.wp.customize || {};
 				null // no related element
 			);
 
-			// Dispatch the event on the iframe element
+			// Dispatch the event on the iframe element.
 			iframe.dispatchEvent( newEvt );
 		};
 	};

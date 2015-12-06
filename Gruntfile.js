@@ -150,11 +150,26 @@ module.exports = function( grunt ) {
 					build_dir: 'build'
 				}
 			}
+		},
+
+		watch: {
+			css: {
+				files: ['css/*.css', '!css/*.min.css'],
+				tasks: ['cssmin']
+			},
+			scripts: {
+				files: ['js/*.js'],
+				tasks: ['js'],
+				options: {
+					debounceDelay: 500
+				}
+			}
 		}
 
 	} );
 
 	// Load tasks
+	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-checktextdomain' );
 	grunt.loadNpmTasks( 'grunt-contrib-clean' );
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
@@ -165,9 +180,13 @@ module.exports = function( grunt ) {
 	grunt.loadNpmTasks( 'grunt-wp-deploy' );
 
 	// Register tasks
-	grunt.registerTask( 'default', [
+	grunt.registerTask( 'js', [
 		'jshint',
-		'uglify',
+		'uglify'
+	] );
+
+	grunt.registerTask( 'default', [
+		'js',
 		'cssmin',
 		'checktextdomain'
 	] );

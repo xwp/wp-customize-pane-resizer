@@ -38,8 +38,6 @@ class Plugin extends Plugin_Base {
 		$this->config = apply_filters( 'customize_pane_resizer_plugin_config', $this->config, $this );
 		$this->min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		// add_action( 'wp_default_scripts', array( $this, 'register_scripts' ), 11 );
-		// add_action( 'wp_default_styles', array( $this, 'register_styles' ), 11 );
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqeue_scripts_styles' ) );
 	}
 
