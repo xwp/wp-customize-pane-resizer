@@ -6,7 +6,7 @@
 		"type": "git",
 		"url": "https://github.com/xwp/wp-customize-pane-resizer.git"
 	},
-	"author": "XWP",
+	"author": "WordPress.org",
 	"license": "GPL-2.0+",
 	"devDependencies": {
 		"grunt": "~0.4.5",
