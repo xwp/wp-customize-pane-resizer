@@ -29,6 +29,7 @@ window.wp.customize = window.wp.customize || {};
 	};
 
 	app.events = function() {
+
 		// We need the iframe to bubble up mouse events.
 		app.initIframeMouseEvents();
 
@@ -76,8 +77,10 @@ window.wp.customize = window.wp.customize || {};
 	};
 
 	app.resizerMovement = function( evt ) {
+
 		// Check if the customizer is expanding (vs shrinking).
 		var expanding = mouseLeft < evt.pageX;
+
 		// Re-cache mouseLeft.
 		mouseLeft = evt.pageX;
 
@@ -112,6 +115,7 @@ window.wp.customize = window.wp.customize || {};
 	};
 
 	app.resizerDisengage = function() {
+
 		// Remove temp. event listeners.
 		$( document ).off( 'mousemove', app.resizerMovement );
 		$( document ).off( 'mouseup', app.resizerDisengage );
@@ -131,20 +135,25 @@ window.wp.customize = window.wp.customize || {};
 
 	app.sizeCustomizer = function( size ) {
 		size = size || '';
+
 		// Overlay margin needs to be nudged (give more space).
 		app.$.overlay.css({ 'margin-left' : size });
+
 		// Move the resizer handle.
 		app.$.resizer.css({ 'margin-left' : size ? size - 5 : size });
+
 		// And of course, resize the customizer.
 		app.$.customizer.width( size );
 	};
 
 	app.initIframeMouseEvents = function() {
+
 		// Need to recursively check for existence of iframe.
 		setTimeout( function() {
 			var $iframe = app.$.overlay.find( 'iframe' );
 
 			if ( $iframe.length ) {
+
 				// Setup iframe bubbling.
 				app.bubbleMouseEvent( $iframe[0], 'mousemove' );
 				app.bubbleMouseEvent( $iframe[0], 'mouseup' );
@@ -156,11 +165,13 @@ window.wp.customize = window.wp.customize || {};
 
 	app.bubbleMouseEvent = function( iframe, evtName ) {
 		var longName = 'on' + evtName;
+
 		// Save any previous handler.
 		var existingMouseEvt = iframe.contentWindow[ longName ];
 
 		// Attach a new listener.
 		iframe.contentWindow[ longName ] = function( evt ) {
+
 			// Fire existing listener.
 			if ( existingMouseEvt ) {
 				existingMouseEvt( evt );

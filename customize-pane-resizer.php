@@ -3,7 +3,7 @@
  * Plugin Name: Customize Pane Resizer
  * Plugin URI: https://github.com/xwp/wp-customize-pane-resizer
  * Description: Feature plugin for WordPress Trac #32296: Allow the customizer be made wider
- * Version: 0.1
+ * Version: 0.1.1
  * Author: WordPress.org
  * Author URI: https://xwp.co/
  * License: GPLv2+

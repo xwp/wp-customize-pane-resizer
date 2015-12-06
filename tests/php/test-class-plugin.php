@@ -37,8 +37,7 @@ class Test_Plugin extends \WP_UnitTestCase {
 
 		$this->assertInternalType( 'array', $plugin->config );
 		$this->assertArrayHasKey( 'foo', $plugin->config );
-		$this->assertEquals( 11, has_action( 'wp_default_scripts', array( $plugin, 'register_scripts' ) ) );
-		$this->assertEquals( 11, has_action( 'wp_default_styles', array( $plugin, 'register_styles' ) ) );
+		$this->assertEquals( 10, has_action( 'customize_controls_enqueue_scripts', array( $plugin, 'enqeue_scripts_styles' ) ) );
 	}
 
 	/**
