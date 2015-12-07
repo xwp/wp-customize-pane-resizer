@@ -4,36 +4,60 @@
 
 /* TODO: UI experts to style adequately. */
 .resizable .customizer-resizer {
-	content: '';
 	display: block;
 	height: 100%;
-	width: 14px;
+	width: 17px;
 	position: absolute;
-	/*top: 50%;*/
-	right: -14px;
-	margin-top: -30px;
+	right: -10px;
 	cursor: pointer;
 	cursor: col-resize;
 	z-index: 9999999;
-	background: url(../images/handle-horz.png) center center no-repeat;
-	opacity: .8;
+	background: none;
+}
+
+.resizable .customizer-resizer:before {
+	content: '';
+	display: block;
+	position: absolute;
+	height: 100%;
+	width: 6px;
+	left: 6px;
+	background: url(../images/grip.png) no-repeat center center;
+
+
+	-webkit-transition-property: width;
+	transition-property: width;
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+}
+
+.fullwidth-customizer.resizable .wp-full-overlay .customizer-resizer:before,
+.resizable .wp-full-overlay.collapsed .customizer-resizer:before {
+	background-color: #ddd; /* Match border-right for custizer */
+	width: 26px;
+	left: -1px;
+}
+
+.fullwidth-customizer.resizable .wp-full-overlay .customizer-resizer:before {
+	width: 15px;
 }
 
 .resizable .wp-full-overlay-sidebar {
 	/*
 	Wider border to help indicate "grabbable"
-	Example UI: http://codepen.io/pen
+	Example UI (Trac): http://b.ustin.co/1aSsJ
 	*/
-	border-right-width: 14px;
+	border-right-width: 6px;
 }
 
 .resizable .wp-full-overlay.collapsed .wp-full-overlay-sidebar {
 	margin-left: -286px;
 }
 
-.resizable.wp-core-ui .wp-full-overlay .collapse-sidebar {
-	/* Bump button out so it's not hovering over our newly widened border */
-	left: 22px;
+.resizable.wp-core-ui .wp-full-overlay.collapsed .collapse-sidebar {
+	/* Bump button in so it's hovering over our newly widened border */
+	left: 1px;
+	z-index: 99999999;
 }
 
 .no-animation.wp-full-overlay,
