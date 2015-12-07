@@ -55,6 +55,10 @@ window.wp.customize = window.wp.customize || {};
 	};
 
 	app.resizerEngage = function( evt ) {
+		if ( 1 !== evt.which ) {
+			return;
+		}
+
 		var winWidth    = app.$.window.width();
 		var iframeWidth = winWidth - app.$.customizer.width();
 
