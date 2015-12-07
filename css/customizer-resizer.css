@@ -8,14 +8,21 @@
 	height: 100%;
 	width: 17px;
 	position: absolute;
-	right: -10px;
+	right: -11px;
 	cursor: pointer;
 	cursor: col-resize;
 	z-index: 9999999;
 	background: none;
 }
 
-.resizable .customizer-resizer:before {
+.resizable.fullwidth-customizer .customizer-resizer {
+	width: 27px;
+	right: -27px;
+}
+
+.resizable .customizer-resizer:before,
+.fullwidth-customizer.resizable .wp-full-overlay .customizer-resizer:after,
+.resizable .wp-full-overlay.collapsed .customizer-resizer:after {
 	content: '';
 	display: block;
 	position: absolute;
@@ -24,7 +31,6 @@
 	left: 6px;
 	background: url(../images/grip.png) no-repeat center center;
 
-
 	-webkit-transition-property: width;
 	transition-property: width;
 	-webkit-transition-duration: 0.4s;
@@ -32,14 +38,33 @@
 }
 
 .fullwidth-customizer.resizable .wp-full-overlay .customizer-resizer:before,
-.resizable .wp-full-overlay.collapsed .customizer-resizer:before {
-	background-color: #ddd; /* Match border-right for custizer */
-	width: 26px;
+.resizable .wp-full-overlay.collapsed .customizer-resizer:before,
+.fullwidth-customizer.resizable .wp-full-overlay .customizer-resizer:after,
+.resizable .wp-full-overlay.collapsed .customizer-resizer:after {
+	background-color: #ddd; /* Match border-right for customizer */
+	width: 27px;
 	left: -1px;
+}
+
+.fullwidth-customizer.resizable .wp-full-overlay .customizer-resizer:before,
+.resizable .wp-full-overlay.collapsed .customizer-resizer:before {
+	background: #ddd; /* Match border-right for customizer */
+}
+
+.fullwidth-customizer.resizable .wp-full-overlay .customizer-resizer:after,
+.resizable .wp-full-overlay.collapsed .customizer-resizer:after {
+	background: url(../images/grip.png) repeat-x center center;
+	width: 15px;
+	left: 5px;
+}
+
+.fullwidth-customizer.resizable .wp-full-overlay .customizer-resizer:after {
+	left: 6px;
 }
 
 .fullwidth-customizer.resizable .wp-full-overlay .customizer-resizer:before {
 	width: 15px;
+	left: 5px;
 }
 
 .resizable .wp-full-overlay-sidebar {
@@ -47,7 +72,12 @@
 	Wider border to help indicate "grabbable"
 	Example UI (Trac): http://b.ustin.co/1aSsJ
 	*/
-	border-right-width: 6px;
+	border-right-width: 7px;
+}
+
+.resizable.fullwidth-customizer .wp-full-overlay,
+.resizable.fullwidth-customizer .wp-full-overlay-sidebar {
+	border-right-width: 27px;
 }
 
 .resizable .wp-full-overlay.collapsed .wp-full-overlay-sidebar {
@@ -68,7 +98,6 @@
 	-webkit-transition: none;
 	transition: none;
 }
-
 
 /*
 	Mimic @media screen and ( max-width: 640px ) styles when body has .fullwidth-customizer

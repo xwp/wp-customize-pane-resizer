@@ -148,7 +148,7 @@ window.wp.customize = window.wp.customize || {};
 		var iframeWidth = app.$.window.width() - mouseLeft;
 
 		// If iframe width is less than a workable width, snap full-screen.
-		if ( iframeWidth < 300 && iframeWidth > 100 ) {
+		if ( iframeWidth < 290 && iframeWidth > 100 ) {
 			app.snapToDefault();
 			app.resizerDisengage();
 
@@ -159,7 +159,9 @@ window.wp.customize = window.wp.customize || {};
 
 		// If we're expanding larger than default, increae the width.
 		if ( mouseLeft >= ( width + 20 ) || mouseLeft >= width && expanding ) {
-			return app.sizeCustomizer( mouseLeft );
+
+			// Offset by 3 pixels to put the cursor in the middle of the resizer bar.
+			return app.sizeCustomizer( mouseLeft - 3 );
 		}
 
 		// If we're condensing, and close to our default, snap to it.
