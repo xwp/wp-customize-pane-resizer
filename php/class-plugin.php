@@ -69,5 +69,4 @@ class Plugin extends Plugin_Base {
 		wp_enqueue_script( 'customizer-resizer' );
 		wp_enqueue_style( 'customizer-resizer' );
 	}
-
 }
