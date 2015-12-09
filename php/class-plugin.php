@@ -17,7 +17,7 @@ class Plugin extends Plugin_Base {
 	 *
 	 * @var string
 	 */
-	public $min;
+	public $min = '';
 
 	/**
 	 * Class constructor.
@@ -36,7 +36,6 @@ class Plugin extends Plugin_Base {
 	 */
 	public function init() {
 		$this->config = apply_filters( 'customize_pane_resizer_plugin_config', $this->config, $this );
-		$this->min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqeue_scripts_styles' ) );
 	}
@@ -70,5 +69,4 @@ class Plugin extends Plugin_Base {
 		wp_enqueue_script( 'customizer-resizer' );
 		wp_enqueue_style( 'customizer-resizer' );
 	}
-
 }

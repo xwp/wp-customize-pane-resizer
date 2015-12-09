@@ -13,44 +13,8 @@ module.exports = function( grunt ) {
 			},
 			all: [
 				'Gruntfile.js',
-				'js/*.js',
-				'!js/*.min.js'
+				'js/*.js'
 			]
-		},
-
-		// Minify .js files.
-		uglify: {
-			options: {
-				preserveComments: false
-			},
-			core: {
-				files: [ {
-					expand: true,
-					cwd: 'js/',
-					src: [
-						'*.js',
-						'!*.min.js'
-					],
-					dest: 'js/',
-					ext: '.min.js'
-				} ]
-			}
-		},
-
-		// Minify .css files.
-		cssmin: {
-			core: {
-				files: [ {
-					expand: true,
-					cwd: 'css/',
-					src: [
-						'*.css',
-						'!*.min.css'
-					],
-					dest: 'css/',
-					ext: '.min.css'
-				} ]
-			}
 		},
 
 		// Check textdomain errors.
@@ -153,10 +117,6 @@ module.exports = function( grunt ) {
 		},
 
 		watch: {
-			css: {
-				files: ['css/*.css', '!css/*.min.css'],
-				tasks: ['cssmin']
-			},
 			scripts: {
 				files: ['js/*.js', '!js/*.min.js'],
 				tasks: ['js'],
@@ -173,21 +133,17 @@ module.exports = function( grunt ) {
 	grunt.loadNpmTasks( 'grunt-checktextdomain' );
 	grunt.loadNpmTasks( 'grunt-contrib-clean' );
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
-	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
-	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-shell' );
 	grunt.loadNpmTasks( 'grunt-wp-deploy' );
 
 	// Register tasks
 	grunt.registerTask( 'js', [
-		'jshint',
-		'uglify'
+		'jshint'
 	] );
 
 	grunt.registerTask( 'default', [
 		'js',
-		'cssmin',
 		'checktextdomain'
 	] );
 
