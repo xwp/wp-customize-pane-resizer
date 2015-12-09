@@ -181,3 +181,9 @@
 .fullwidth-customizer #customize-header-actions .button-primary {
 	margin-top: 6px;
 }
+
+#customize-controls img {
+	display: block;
+	max-width: 256px;
+	margin: 0 auto;
+}
