@@ -81,7 +81,6 @@ window.wp.customize = window.wp.customize || {};
 		app.initIframeMouseEvents();
 
 		app.$.resizer.on( 'mousedown', app.resizerEngage );
-		$( '[aria-expanded]' ).on( 'click', app.toggleExpansion );
 
 		$( window ).resize( _.debounce( app.checkWindowWidth, 50 ) );
 	};
