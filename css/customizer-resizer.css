@@ -182,7 +182,7 @@
 	margin-top: 6px;
 }
 
-#customize-controls img {
+#customize-controls .customize-control-site_icon img {
 	display: block;
 	max-width: 256px;
 	margin: 0 auto;
