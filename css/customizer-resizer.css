@@ -15,6 +15,17 @@
 	background: none;
 }
 
+/* Hide resizer when widget and menu panel is open */
+.adding-menu-items .customizer-resizer,
+.adding-widget .customizer-resizer {
+	display: none;
+}
+
+.adding-menu-items.resizable .wp-full-overlay-sidebar,
+.adding-widget.resizable .wp-full-overlay-sidebar {
+	border-right-width: 1px;
+}
+
 .resizable.fullwidth-customizer .customizer-resizer {
 	width: 27px;
 	right: -27px;
